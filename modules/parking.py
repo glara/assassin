@@ -44,10 +44,10 @@ class Parking:
 
   def __state_payload(self, occupied, distance):
     return {
-      'device_id': DEVICE_MAC,
-      'occupied': occupied,
-      'distance': distance,
-      'timestamp': timestamp()
+      'value': occupied,
+      'measure_unit': 'boolean',
+      'device_uuid': DEVICE_MAC,
+      'remote_ts': timestamp()
     }
 
   def __occupied_lights(self):
