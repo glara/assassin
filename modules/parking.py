@@ -20,13 +20,13 @@ class Parking:
     while True:
       try:
         self.broker.connect()
-        distance = self.__get_distance()
+        distance = int(self.__get_distance())
 
         if (distance < 1):
           self.broker.disconnect()
-          pass
+          continue
 
-        occupied = int(distance) in PARKING_OCCUPIED_RANGE
+        occupied = distance in PARKING_OCCUPIED_RANGE
 
         if (occupied):
           self.__occupied_lights()
@@ -44,7 +44,7 @@ class Parking:
 
   def __state_payload(self, occupied, distance):
     return {
-      'client_id': DEVICE_MAC,
+      'device_id': DEVICE_MAC,
       'occupied': occupied,
       'distance': distance,
       'timestamp': timestamp()
